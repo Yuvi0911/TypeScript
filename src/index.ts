@@ -31,10 +31,10 @@ const func1: UserName = (n,m) => {
 }
 
 // Array
-//Method-1
+//Method-1)
 const arr: number[] = [10, 20, 30, 40];
 const arr1: string[] = ['a','b','c','d'];
-//Method-2
+//Method-2)
 const arr2: Array<string> = [];
 const arr3: Array<boolean> = [];
 //if i want both number and string
