@@ -1,0 +1,5 @@
+1. (tsc file_name)  ki help se hum file ko run kr skte h jisse vo javascript me convert ho jaiye gi. Yadi hum kuch change krege ts file me toh hume dobara (tsc file_name) krna pdega js me convert krne k liye, is se bachne k liye hum apni ts file ko watch mode me run krege (tsc file_name -w) jisse ye changes ko apne aap detect kr lega aur js file me bhi change krdega.
+2. hum 2 alag alag folder bnaye ge dist aur src. src me hum apni ts file likhe ge aur dist me vo file js me convert ho kr aa jaye gi.
+3. (tsc -init) iski help se hume ab baar baar file ka naam likh kr ushe js me convert krne ki jrurt nhi h.
+4. hum tsconfig file me jaye ge aur    "target": "ES2020", "rootDir": "./src", "outDir": "./dist", ye changes krdege
+5. ab hume keval (tsc -w) krna h aur humara folder watch mode me on ho jaye ga.
