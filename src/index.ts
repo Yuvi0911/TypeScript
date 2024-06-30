@@ -455,5 +455,88 @@ const user: Random6 = {
     t: 18,
 }
 
-//GENERICS
+//GENERICS => yadi hume nhi pta ki value ka kya type hoga toh hum generic ka use krte h. Hum <CustomType> ki help se generic ko use kr skte h. CustomType ki jagah hum kuch bhi likh skte h, humne niche T likha h.
+//Isko hum placeholder ki trh samjh skte h, hum jis type ki value bheje ge ye ushi type ka datatype ban jaiye ga. Jaise ki humne number bheja toh ye number ban, aur humne string bheji toh ye string ban gya. Lekin any k case me aisa nhi hota yadi hum any use krege toh uska type hamesha any hi rhega aur isliye hum any ko typescript me avoid hi krte h kyoki uska use krne k baad ts ka koi fyada nhi rhega. Isliye hum any na use kr k generic use krte h.
 
+// const func5 = <T>(n: T): T => {
+//     let text:T;
+//     return n;
+// }
+// const ans = func5(20);
+// const ans1 = func5("20");
+// const ans2 = func5(true);
+
+// type Person1 = {
+//     name: string,
+//     age: number,
+// }
+// const func5 = <T>(n: T): T => {
+//     return n;
+// }
+// const person1: Person1={
+//     name: "Yuvraj",
+//     age: 21,
+// }
+// // const ans = func5(person1);
+// const ans = func5<Person1>(person1);
+
+//hum kitne bhi generic use kr skte h
+// const func5 = <T, U>(n: T, o:U):{n:T,o:U} => {
+//     return {n,o};
+// }
+// const ans = func5<number,string>(20, "yuvi")
+
+// type Person2 = {
+//     name: string,
+//     age: number,
+// }
+// type Person3 = {
+//     name: string,
+//     age: number,
+//     email: string,
+// }
+//U me jo arguments bheje ge vo T vale arguents se extends hone chaiye.
+// const func5 = <T, U extends T>(n: T, o:U):{n:T,o:U} => {
+//     return {n,o};
+// }
+// const user7: Person2 = {
+//     name: "yuvraj",
+//     age: 21,
+// }
+// const user8: Person3 = {
+//     name: "yuvraj",
+//     age: 21,
+//     email: "yuvraj091102@gmail.com"
+// }
+// const ans = func5<Person2, Person3>(user7, user8);
+
+type Person2 = {
+    name: string,
+    age: number,
+}
+const users9: Person2[] = [
+    {
+        name: "yuvraj",
+        age: 21,
+    },
+    {
+        name: "yuvi",
+        age: 24,
+    },
+    {
+        name: "uv",
+        age: 19,
+    },
+    {
+        name: "thunder",
+        age: 23,
+    },
+]
+const filterByPeoples = <T, U extends keyof T>(arr: T[], property: U, value: T[U]): T[] => {
+    return arr.filter((item)=>item[property] === value)
+}
+
+const filteredPeopleByName = filterByPeoples(users9, "name", "yuvi")
+console.log(filteredPeopleByName)
+const filteredPeopleByAge = filterByPeoples(users9, "age", 19)
+console.log(filteredPeopleByAge)

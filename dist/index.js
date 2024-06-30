@@ -261,4 +261,28 @@ const user = {
     s: "yuvraj",
     t: 18,
 };
-//GENERICS
+const users9 = [
+    {
+        name: "yuvraj",
+        age: 21,
+    },
+    {
+        name: "yuvi",
+        age: 24,
+    },
+    {
+        name: "uv",
+        age: 19,
+    },
+    {
+        name: "thunder",
+        age: 23,
+    },
+];
+const filterByPeoples = (arr, property, value) => {
+    return arr.filter((item) => item[property] === value);
+};
+const filteredPeopleByName = filterByPeoples(users9, "name", "yuvi");
+console.log(filteredPeopleByName);
+const filteredPeopleByAge = filterByPeoples(users9, "age", 19);
+console.log(filteredPeopleByAge);
