@@ -202,7 +202,63 @@ form.onsubmit = (e) => {
     const body = document.querySelector("body");
     body.append(h2);
 };
-const myObj = {
+const myobj = {
     name: "Yuvraj",
+    email: "yuvraj091102@gmail.com",
+};
+let key = "name";
+// myobj[key as keyof Person];
+myobj[key];
+const getName = () => {
+    return myobj["name"];
+};
+const getEmail = () => {
+    return myobj["email"];
+};
+// const getData3 = (key: "name" | "email"): string=>{
+//     return myobj[key];
+// }
+// const getData3 = (key: string): string=>{
+//     return myobj[key];
+// }
+const getData3 = (key) => {
+    return myobj[key];
+};
+getData3("name");
+const user6 = {
+    name: "yuvraj",
     email: "yuvraj091102@gmail.com"
 };
+const users = {
+    john: { age: 20 },
+    yuvi: { age: 21 },
+    elon: { age: 22 },
+    jack: { age: 24 },
+};
+// 10) Parameters<Type> => parameters ka type bta dega as an array.
+const myfunc = (a, b) => {
+    console.log(a + b);
+};
+// 11) ConstructorParameters<Type> => class k constructor k parameter ka type bta dega.
+class SampleClass {
+    constructor(s, t) {
+        this.s = s;
+        this.t = t;
+    }
+}
+// 12) ReturnType<Type> => function ki return value ka type btaye ga.
+const myfunc1 = (s, t) => {
+    return t;
+};
+// 13) InstanceType<Type>
+class SampleClass1 {
+    constructor(s, t) {
+        this.s = s;
+        this.t = t;
+    }
+}
+const user = {
+    s: "yuvraj",
+    t: 18,
+};
+//GENERICS

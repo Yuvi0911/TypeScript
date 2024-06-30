@@ -316,8 +316,144 @@ form.onsubmit=(e: SubmitEvent)=>{
 interface Person{
     name: string,
     email: string,
+    //humne ye likh diya toh hum kitni bhi value de skte h.
+    // [key: string] : string;
 }
-const myObj: Person = {
+const myobj: Person = {
     name: "Yuvraj",
+    email: "yuvraj091102@gmail.com",
+}
+let key="name";
+// myobj[key as keyof Person];
+myobj[key as keyof typeof myobj];
+
+const getName = () : string => {
+    return myobj["name"];
+}
+const getEmail = () : string => {
+    return myobj["email"];
+}
+// const getData3 = (key: "name" | "email"): string=>{
+//     return myobj[key];
+// }
+// const getData3 = (key: string): string=>{
+//     return myobj[key];
+// }
+const getData3 = (key: keyof Person): string=>{
+    return myobj[key];
+}
+getData3("name");
+
+
+//UTILITY TYPE
+
+// 1) Partial<type> => yadi hume ek type ki sbhi properties ko optional bnana h toh hum iski help se bna skte h.
+type User = {
+    name: string,
+    email: string,
+}
+type User2 = Partial<User>
+
+// 2) Required<Type> => oposite of partial. Sbhi ko mandatory bna dega.
+type User3 = {
+    name?: string,
+    email: string,
+}
+type User4 = Required<User3>
+// const user5: Required<User3> ={
+// name: "yuvraj",
+// email: "yuvraj091102@gmail.com"
+// }
+
+// 3) Readonly<Type> => makes every property readonly
+type User6 = {
+    name: string,
+    email: string,
+}
+const user6: Readonly<User6>={
+    name: "yuvraj",
     email: "yuvraj091102@gmail.com"
 }
+
+// 4) Record<keys, Type>
+// type User7 = {
+//     name: string;
+//     email: string;
+// }
+// type User8 = Record<"name" | "email" | "gender", string>
+// ex=>
+interface UserInfo {
+    age: number;
+}
+type UserName1 = "john" | "yuvi" | "elon" | "jack";
+const users: Record<UserName1, UserInfo> = {
+    john: {age: 20},
+    yuvi: {age: 21},
+    elon: {age: 22},
+    jack: {age: 24},
+}
+
+// 5)Pick<Type, Keys> => iski help se hum select kr skte h ki hume ek type me se kon kon si value chaiye dusre type me.
+interface OrderInfo {
+    readonly id: string;
+    user: string;
+    city: string;
+    state: string;
+    country: string;
+    status: string;
+}
+type ShippingInfo = Pick<OrderInfo, "city" | "state" | "country">
+
+// 6) Omit<Type, Keys> => jin key ko select krege vo hat jaiye ge naye type me.
+interface OrderInfo1 {
+    readonly id: string;
+    user: string;
+    city: string;
+    state: string;
+    country: string;
+    status: string;
+}
+type ShippingInfo1 = Omit<OrderInfo, "city" | "state" | "country">
+
+// 7) Exclude<Type, ExcludeUnion> => iski help se hum union value me se koi bhi type ko hta skte h. Random me hum boolean use nhi kr skte h.
+type MyUnion = string | number | boolean
+type Random = Exclude<MyUnion, boolean>
+
+// 8) Extract<Type, Union> => iski help se hum ek type me se 1 value ko extract kr k dusre type me de skte h. Random1 me hum keval boolean use kr skte h.
+type MyUnion1 = string | number | boolean
+type Random1 = Extract<MyUnion1, boolean>
+
+// 9) NonNullable<Type> => null aur undefined k alava sbhi ko de ga.
+type MyUnion2 = string | number | boolean | null | undefined
+type Random2 = NonNullable<MyUnion2>
+
+// 10) Parameters<Type> => parameters ka type bta dega as an array.
+const myfunc = (a: number, b:string)=>{
+    console.log(a + b);
+}
+type Random3 = Parameters<typeof myfunc>
+
+// 11) ConstructorParameters<Type> => class k constructor k parameter ka type bta dega.
+class SampleClass {
+    constructor(public s: string, public t: number){}
+}
+type Random4 = ConstructorParameters<typeof SampleClass>
+
+// 12) ReturnType<Type> => function ki return value ka type btaye ga.
+const myfunc1 = (s: string, t:number): number => {
+    return t;
+}
+type Random5 = ReturnType<typeof myfunc1>
+
+// 13) InstanceType<Type>
+class SampleClass1 {
+    constructor(public s: string, public t: number){}
+}
+type Random6 = InstanceType<typeof SampleClass>
+const user: Random6 = {
+    s: "yuvraj",
+    t: 18,
+}
+
+//GENERICS
+
